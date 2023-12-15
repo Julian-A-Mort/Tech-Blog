@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Blog Title</title>
+    <!-- Add any CSS links here -->
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="/">Homepage</a></li>
+            {{#if loggedIn}}
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="/logout">Logout</a></li>
+            {{else}}
+                <li><a href="/login">Login</a></li>
+                <li><a href="/register">Sign Up</a></li>
+            {{/if}}
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    {{{body}}}
+
+    <!-- Add any JavaScript files at the end of the body -->
+</body>
+</html>

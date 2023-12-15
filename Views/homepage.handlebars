@@ -1,0 +1,22 @@
+<!-- Navigation -->
+<nav>
+    <ul>
+        <li><a href="/">Homepage</a></li>
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li><a href="/login">Login</a></li>
+        <li><a href="/register">Sign Up</a></li>
+    </ul>
+</nav>
+
+<!-- Existing log posts -->
+<h1>Tech Blog!</h1>
+<ul>
+  {{#each posts}}
+    <li>
+      <h2>{{this.title}}</h2>
+      <p>{{this.createdAt}}</p>
+      <p>{{this.contents}}</p>
+      <a href="/post/{{this.id}}" class="btn btn-primary">Read More</a>
+    </li>
+  {{/each}}
+</ul>
