@@ -1,7 +1,7 @@
 require('dotenv').config();
 
 const express = require('express');
-const exphbs = require('express-handlebars');
+const { engine } = require('express-handlebars');
 const path = require('path');
 const db = require('./models'); 
 
@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 //handlebars
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
+app.engine('handlebars', engine({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
 //define routes

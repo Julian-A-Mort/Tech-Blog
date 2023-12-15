@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const { Comment, User, Post } = require('../models');
-const withAuth = require('../utils/auth');
-const helpers = require('../utils/helpers');
+const withAuth = require('../middleware/auth');
 
 // Route for home page
 router.get('/', async (req, res) => {
@@ -35,3 +34,5 @@ router.get('/register', (req, res) => {
     }
     res.render('register');
 });
+
+module.exports = router;
