@@ -8,21 +8,22 @@ const db = require('./models');
 const app = express();
 const PORT = process.env.PORT || 3000;
 const apiRoutes = require('./controllers/api');
-const withAuth = require('./middleware/auth');
+const homeRoutes = require('./controllers/homeRoutes');
 
-app.use('/api', apiRoutes);
-app.use('/', homeRoutes);
+//middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+//handlebars
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
-app.get('/', (req, res) => {
-    res.render('home');
-});
+//define routes
+app.use('/api', apiRoutes);
+app.use('/', homeRoutes);
 
+//sync Sequelize and begin the server
 db.sequelize.sync({ force: false }).then(() => {
     app.listen(PORT, () => {
         console.log(`Server running on http://localhost:${PORT}`);
@@ -31,6 +32,7 @@ db.sequelize.sync({ force: false }).then(() => {
     console.error('Unable to connect to the database:', err);
 });
 
+//errir handling
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Something broke!');

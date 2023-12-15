@@ -1,6 +1,6 @@
-const User = require('.User'); //is this right or do i need ./
-const Post = require('.Post');
-const Comment = require('.Comment');
+const User = require('./User'); //is this right or do i need ./
+const Post = require('./Post');
+const Comment = require('./Comment');
 
 
 // Defined associations 
