@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { Comment } = require('../../models');
+const withAuth = require('../../middleware/auth');
 
 // Create a new comment
 router.post('/', withAuth, async (req, res) => {
@@ -16,7 +17,7 @@ router.post('/', withAuth, async (req, res) => {
 });
 
 // Get all comments for a post
-router.get('/post/:postId', async (req, res) => {
+router.get('/post/:postId/comments', async (req, res) => {
   try {
     const commentsData = await Comment.findAll({
       where: { post_id: req.params.postId },
@@ -38,7 +39,7 @@ router.put('/:id', withAuth, async (req, res) => {
     });
 
     if (!updatedComment) {
-      res.status(404).json({ message: 'No comment found nooo!' });
+      res.status(404).json({ message: 'No comment found!' });
       return;
     }
 

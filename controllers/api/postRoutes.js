@@ -1,5 +1,7 @@
 const router = require('express').Router();
 const { Post, User, Comment } = require('../../models');
+const withAuth = require('../../middleware/auth');
+
 
 // Create new post
 router.post('/', withAuth, async (req, res) => {
@@ -50,7 +52,7 @@ router.put('/:id', withAuth, async (req, res) => {
     const updatedPost = await Post.update(req.body, {
       where: {
         id: req.params.id,
-        user_id: req.session.user_id, //keep?
+        user_id: req.session.user_id,
       },
     });
 
@@ -59,7 +61,7 @@ router.put('/:id', withAuth, async (req, res) => {
       return;
     }
 
-    res.status(200).json(updatedPost);
+    res.status(200).json({ message: 'Post updated successfully' });
   } catch (err) {
     res.status(500).json(err);
   }
