@@ -8,6 +8,7 @@ const db = require('./models');
 const app = express();
 const PORT = process.env.PORT || 3000;
 const apiRoutes = require('./controllers/api');
+const withAuth = require('./middleware/auth');
 
 app.use('/api', apiRoutes);
 app.use('/', homeRoutes);
@@ -28,4 +29,9 @@ db.sequelize.sync({ force: false }).then(() => {
     });
 }).catch(err => {
     console.error('Unable to connect to the database:', err);
+});
+
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Something broke!');
 });
