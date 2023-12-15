@@ -1,0 +1,15 @@
+<!-- views/home.hbs -->
+
+<h1>Welcome to the Blog Homepage</h1>
+
+<!-- List of existing blog posts -->
+<ul>
+  {{#each posts}}
+    <li>
+      <h2>{{this.title}}</h2>
+      <p>{{this.createdAt}}</p>
+      <p>{{this.contents}}</p>
+      <a href="/post/{{this.id}}" class="btn btn-primary">Read More</a>
+    </li>
+  {{/each}}
+</ul>

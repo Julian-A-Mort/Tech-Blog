@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
 
         const posts = postData.map((post) => post.get({ plain: true }));
 
-        res.render('homepage', { posts, loggedIn: req.session.loggedIn });
+        res.render(homepage, { posts, loggedIn: req.session.loggedIn });
     } catch (err) {
         res.status(500).json(err);
     }
@@ -23,7 +23,7 @@ router.get('/login', (req, res) => {
         res.redirect('/');
         return;
     }
-    res.render('login');
+    res.render(login);
 });
 
 // Route for the registration page
@@ -32,7 +32,7 @@ router.get('/register', (req, res) => {
         res.redirect('/');
         return;
     }
-    res.render('register');
+    res.render(register);
 });
 
 module.exports = router;
